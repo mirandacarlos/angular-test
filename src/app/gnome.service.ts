@@ -7,7 +7,7 @@ import { Gnome } from "./gnome";
 @Injectable({
   providedIn: 'root'
 })
-export class GnomeServiceService {
+export class GnomeService {
 
   private gnomesUrl = 'https://raw.githubusercontent.com/'
   + 'rrafols/mobile_test/master/data.json';
