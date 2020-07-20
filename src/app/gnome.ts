@@ -1,11 +1,11 @@
 export interface Gnome {
     id: number;
-    name: String;
+    name: string;
     height: number;
     weight: number;
     age: number;
-    hair_color: String;
-    thumbnail: String;
-    friends: String[];
-    professions: String[];
+    hair_color: string;
+    thumbnail: string;
+    friends: string;
+    professions: string;
 }
