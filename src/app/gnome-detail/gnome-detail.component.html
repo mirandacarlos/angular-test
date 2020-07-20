@@ -1,0 +1,25 @@
+<mat-card>
+    <mat-card-title>{{gnome.name}}</mat-card-title>
+    <mat-card-subtitle>
+        <div>{{gnome.age}} years</div>
+        <div>{{gnome.height}} cms</div>
+        <div>{{gnome.weight}} Kgs</div>
+        <div>{{gnome.hair_color}} hair</div>
+    </mat-card-subtitle>
+    <mat-card-content>
+        <div *ngIf="gnome.professions">Professions
+        <ul>
+            <li *ngFor="let profession of gnome.professions.split(',')">{{profession}}</li>
+        </ul>
+    </div>
+        <mat-divider></mat-divider>
+        <div *ngIf="gnome.friends">Friends
+        <ul>
+            <li *ngFor="let friend of gnome.friends.split(',')">{{friend}}</li>
+        </ul>
+        </div>
+    </mat-card-content>
+    <img mat-card-image src="{{gnome.thumbnail}}" alt="{{gnome.id}}">
+    <mat-card-actions>	Container for buttons at the bottom of the card</mat-card-actions>
+    <mat-card-footer><footer>foot</footer></mat-card-footer>
+</mat-card>
