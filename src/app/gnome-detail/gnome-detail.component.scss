@@ -1,0 +1,11 @@
+mat-card-subtitle {
+    display: flex
+}
+
+mat-card-subtitle > span {
+    align-self: flex-end
+}
+
+mat-card-subtitle > mat-divider {
+    margin: 5px
+}

@@ -1,25 +1,48 @@
-<mat-card>
-    <mat-card-title>{{gnome.name}}</mat-card-title>
-    <mat-card-subtitle>
-        <div>{{gnome.age}} years</div>
-        <div>{{gnome.height}} cms</div>
-        <div>{{gnome.weight}} Kgs</div>
-        <div>{{gnome.hair_color}} hair</div>
-    </mat-card-subtitle>
-    <mat-card-content>
-        <div *ngIf="gnome.professions">Professions
-        <ul>
-            <li *ngFor="let profession of gnome.professions.split(',')">{{profession}}</li>
-        </ul>
-    </div>
-        <mat-divider></mat-divider>
-        <div *ngIf="gnome.friends">Friends
-        <ul>
-            <li *ngFor="let friend of gnome.friends.split(',')">{{friend}}</li>
-        </ul>
-        </div>
-    </mat-card-content>
-    <img mat-card-image src="{{gnome.thumbnail}}" alt="{{gnome.id}}">
-    <mat-card-actions>	Container for buttons at the bottom of the card</mat-card-actions>
-    <mat-card-footer><footer>foot</footer></mat-card-footer>
-</mat-card>
+<mat-grid-list cols="1">
+    <mat-grid-tile>
+        <mat-card>
+            <mat-card-header>
+                <img mat-card-avatar src="{{gnome.thumbnail}}" alt="{{gnome.id}}" />
+                <mat-card-title>{{gnome.name}}</mat-card-title>
+                <mat-card-subtitle>
+                    <mat-icon>calendar_today</mat-icon>
+                    <span> {{gnome.age}} years</span>
+                    <mat-divider vertical="true"></mat-divider>
+                    <mat-icon>vertical_align_top</mat-icon>
+                    <span> {{gnome.height | number: '1.0-2'}} cms</span>
+                    <mat-divider vertical="true"></mat-divider>
+                    <mat-icon>vertical_align_bottom</mat-icon>
+                    <span> {{gnome.weight | number: '1.0-2'}} Kgs</span>
+                    <mat-divider vertical="true"></mat-divider>
+                    <mat-icon>face</mat-icon>
+                    <span> {{gnome.hair_color}} hair</span>
+                </mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+                <mat-chip-list *ngIf="gnome.professions">
+                    <mat-chip *ngFor="let profession of gnome.professions.split(',')">
+                        {{profession}}
+                    </mat-chip>
+                </mat-chip-list>
+            </mat-card-content>
+            <!-- <mat-card-actions>
+                <button mat-button>Back</button>
+            </mat-card-actions> -->
+            <mat-card-footer>
+                <mat-accordion *ngIf="gnome.friends">
+                    <mat-expansion-panel displayMode="flat">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>Friends</mat-panel-title>
+                            <mat-panel-description>
+                                {{gnome.friends.split(',').length}}
+                            </mat-panel-description>
+                        </mat-expansion-panel-header>
+                        <mat-list>
+                            <mat-list-item *ngFor="let friend of gnome.friends.split(',')">{{friend}}</mat-list-item>
+                        </mat-list>
+                    </mat-expansion-panel>
+                </mat-accordion>
+            </mat-card-footer>
+        </mat-card>
+    </mat-grid-tile>
+</mat-grid-list>    
