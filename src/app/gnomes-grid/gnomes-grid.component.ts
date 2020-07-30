@@ -20,7 +20,6 @@ export class GnomesGridComponent implements OnInit {
 
   getGnomes(): void {
     this.gnomeService.getGnomes()
-      .subscribe(gnomes => this.gnomes = gnomes);
+      .subscribe((gnomes: Gnome[]) => this.gnomes = gnomes);
   }
-
 }

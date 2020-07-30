@@ -1,19 +1,14 @@
 <div *ngIf="gnomes">
-    <div *ngFor="let town of gnomes | keyvalue">
-        <h1>{{town.key}}</h1>
         <mdc-image-list [masonry]="true" 
         class="masonry-image-list mdc-image-list--with-text-protection">
-            <mdc-image-list-item *ngFor="let gnome of town.value">
-                <a [routerLink]="['/detail', gnome]">
+            <mdc-image-list-item *ngFor="let gnome of gnomes">
+                <a routerLink="/detail/{{gnome.id}}">
                     <img mdcImageListImage src="{{gnome.thumbnail}}" alt="{{gnome.id}}" />
                 </a>
                 <mdc-image-list-supporting>
                     <span mdcImageListLabel>{{gnome.name}}
-                        <!-- <div><a routerLink="/detail/{{gnome.id}}">{{gnome.name}}</a></div> -->
-                        <!-- <div>{{gnome.age}} years</div> -->
                     </span>
                 </mdc-image-list-supporting>
             </mdc-image-list-item>
         </mdc-image-list>
-    </div>
 </div>
