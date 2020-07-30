@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
 import { Gnome } from "../gnome";
+import { GnomeService } from "../gnome.service";
 
 @Component({
   selector: 'app-gnome-detail',
@@ -15,28 +16,20 @@ export class GnomeDetailComponent implements OnInit {
   
   constructor(
     private route: ActivatedRoute, 
-    private location: Location
+    private location: Location,
+    private gnomeService: GnomeService
   ) { }
   
   ngOnInit(): void {
-    this.setGnome();
+    this.getGnome();
   }
-  
-  setGnome(): void{
-    let snap = this.route.snapshot.paramMap;
-    this.gnome = {
-      id: + snap.get('id'),
-      name: snap.get('name'),
-      height: + snap.get('height'),
-      weight: + snap.get('weight'),
-      age: + snap.get('age'),
-      hair_color: snap.get('hair_color'),
-      thumbnail: snap.get('thumbnail'),
-      friends: snap.get('friends'),
-      professions: snap.get('professions')
-    };
+
+  getGnome(): void {
+    const id = +this.route.snapshot.paramMap.get('id');
+    this.gnomeService.getGnome(id)
+      .subscribe((gnome: Gnome) => this.gnome = gnome);
   }
-  
+
   goBack(): void {
     this.location.back();
   }

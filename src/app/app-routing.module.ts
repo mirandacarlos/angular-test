@@ -7,7 +7,7 @@ import { GnomeDetailComponent } from "./gnome-detail/gnome-detail.component";
 const routes: Routes = [
   { path: '', redirectTo: '/gnomes', pathMatch: 'full' },
   { path: 'gnomes', component: GnomesGridComponent },
-  { path: 'detail', component: GnomeDetailComponent }
+  { path: 'detail/:id', component: GnomeDetailComponent }
 ];
 
 @NgModule({
