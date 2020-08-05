@@ -1,14 +1,45 @@
-<div *ngIf="gnomes">
-        <mdc-image-list [masonry]="true" 
-        class="masonry-image-list mdc-image-list--with-text-protection">
-            <mdc-image-list-item *ngFor="let gnome of gnomes">
-                <a routerLink="/detail/{{gnome.id}}">
-                    <img mdcImageListImage src="{{gnome.thumbnail}}" alt="{{gnome.id}}" />
-                </a>
-                <mdc-image-list-supporting>
-                    <span mdcImageListLabel>{{gnome.name}}
-                    </span>
-                </mdc-image-list-supporting>
-            </mdc-image-list-item>
-        </mdc-image-list>
+<div class="masonry">
+    <div *ngFor="let gnome of gnomes">
+        <mat-card class="mat-elevation-z8">
+            <mat-card-header>
+                <img mat-card-avatar src="{{gnome.thumbnail}}" alt="{{gnome.id}}" />
+                <mat-card-title>{{gnome.name}}</mat-card-title>
+                <mat-card-subtitle>
+                    <mat-icon>calendar_today</mat-icon>
+                    <span> {{gnome.age}} years</span>
+                    <mat-divider vertical="true"></mat-divider>
+                    <mat-icon>vertical_align_top</mat-icon>
+                    <span> {{gnome.height | number: '1.0-2'}} cms</span>
+                    <mat-divider vertical="true"></mat-divider>
+                    <mat-icon>vertical_align_bottom</mat-icon>
+                    <span> {{gnome.weight | number: '1.0-2'}} Kgs</span>
+                    <mat-divider vertical="true"></mat-divider>
+                    <mat-icon>face</mat-icon>
+                    <span> {{gnome.hair_color}} hair</span>
+                </mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+                <mat-chip-list *ngIf="gnome.professions">
+                    <mat-chip *ngFor="let profession of gnome.professions.sort()">
+                        {{profession}}
+                    </mat-chip>
+                </mat-chip-list>
+            </mat-card-content>
+            <mat-card-footer>
+                <mat-accordion *ngIf="gnome.friends.length > 0">
+                    <mat-expansion-panel displayMode="flat">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>Friends</mat-panel-title>
+                            <mat-panel-description>
+                                {{gnome.friends.length}}
+                            </mat-panel-description>
+                        </mat-expansion-panel-header>
+                        <mat-list>
+                            <mat-list-item *ngFor="let friend of gnome.friends.sort()">{{friend}}</mat-list-item>
+                        </mat-list>
+                    </mat-expansion-panel>
+                </mat-accordion>
+            </mat-card-footer>
+        </mat-card>
+    </div>
 </div>
