@@ -8,6 +8,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from "@angular/material/list";
 import { MatExpansionModule } from "@angular/material/expansion";
+import { MatPaginatorModule } from "@angular/material/paginator";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -32,7 +33,8 @@ import { GnomeDetailComponent } from './gnome-detail/gnome-detail.component';
     MatGridListModule,
     MatIconModule,
     MatListModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatPaginatorModule
   ],
   providers: [],
   bootstrap: [AppComponent]

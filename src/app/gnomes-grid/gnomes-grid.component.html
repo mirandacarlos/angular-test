@@ -43,3 +43,8 @@
         </mat-card>
     </div>
 </div>
+<mat-paginator [length]="length"
+               [pageSize]="pageSize"
+               [pageSizeOptions]="pageSizeOptions"
+               (page)="pageEvent = $event; getGnomes()">
+</mat-paginator>
