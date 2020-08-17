@@ -3,7 +3,9 @@
         <mat-card class="mat-elevation-z8">
             <mat-card-header>
                 <img mat-card-avatar src="{{gnome.thumbnail}}" alt="{{gnome.id}}" />
-                <mat-card-title>{{gnome.name}}</mat-card-title>
+                <mat-card-title>
+                    <a routerLink="/gnomes" [queryParams]="{id: gnome.id}">{{gnome.name}}</a>
+                </mat-card-title>
                 <mat-card-subtitle>
                     <mat-icon>calendar_today</mat-icon>
                     <span> {{gnome.age}} years</span>

@@ -1,15 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { PageEvent } from "@angular/material/paginator";
+import { MatDialog } from "@angular/material/dialog";
+import { Subscription } from "rxjs";
 
 import { Gnome } from "../gnome";
 import { GnomeService } from "../gnome.service";
+import { GnomeDetailComponent } from '../gnome-detail/gnome-detail.component';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-gnomes-grid',
   templateUrl: './gnomes-grid.component.html',
   styleUrls: ['./gnomes-grid.component.scss']
 })
-export class GnomesGridComponent implements OnInit {
+export class GnomesGridComponent implements OnInit, OnDestroy {
 
   gnomes: Gnome[];
 
@@ -21,10 +25,27 @@ export class GnomesGridComponent implements OnInit {
   // MatPaginator Output
   pageEvent: PageEvent;
 
-  constructor(private gnomeService: GnomeService) { }
+  routeQueryParams$: Subscription;
+
+  constructor(
+    private gnomeService: GnomeService,
+    public dialog: MatDialog,
+    private route: ActivatedRoute,
+    private router: Router
+  ) { 
+    this.routeQueryParams$ = route.queryParams.subscribe(params => {
+      if (params['id']){
+        this.openDialog(params['id']);
+      }
+    })
+  }
 
   ngOnInit(): void {
     this.getGnomes();
+  }
+
+  ngOnDestroy() {
+    this.routeQueryParams$.unsubscribe();
   }
 
   getGnomes(): void {
@@ -36,5 +57,17 @@ export class GnomesGridComponent implements OnInit {
           this.pageEvent ? (this.pageEvent.pageIndex + 1) * this.pageEvent.pageSize : 10
         );
       });
+  }
+
+  openDialog(id: number): void {
+    const dialogRef = this.dialog.open(GnomeDetailComponent, {
+      height: '90%',
+      width: '90%',
+      data: {id: id}
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+      this.router.navigate(['.'], {relativeTo: this.route})
+    });
   }
 }

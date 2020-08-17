@@ -9,6 +9,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from "@angular/material/list";
 import { MatExpansionModule } from "@angular/material/expansion";
 import { MatPaginatorModule } from "@angular/material/paginator";
+import { MatDialogModule } from "@angular/material/dialog";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -34,7 +35,8 @@ import { GnomeDetailComponent } from './gnome-detail/gnome-detail.component';
     MatIconModule,
     MatListModule,
     MatExpansionModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]
