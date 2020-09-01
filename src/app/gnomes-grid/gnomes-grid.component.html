@@ -3,19 +3,31 @@
         <mat-card class="mat-elevation-z8">
             <mat-card-header>
                 <img mat-card-avatar src="{{gnome.thumbnail}}" alt="{{gnome.id}}" />
-                <mat-card-title>{{gnome.name}}</mat-card-title>
+                <mat-card-title>
+                    <a routerLink="detail/{{gnome.id}}">{{gnome.name}}</a>
+                </mat-card-title>
                 <mat-card-subtitle>
-                    <mat-icon>calendar_today</mat-icon>
-                    <span> {{gnome.age}} years</span>
+                    <span>
+                        <mat-icon inline="true">calendar_today</mat-icon>
+                         {{gnome.age}} years
+                    </span>
                     <mat-divider vertical="true"></mat-divider>
-                    <mat-icon>vertical_align_top</mat-icon>
-                    <span> {{gnome.height | number: '1.0-2'}} cms</span>
+                    <span>
+                        <mat-icon inline="true">vertical_align_top</mat-icon>
+                         {{gnome.height | number: '1.0-2'}} cms
+
+                    </span>
                     <mat-divider vertical="true"></mat-divider>
-                    <mat-icon>vertical_align_bottom</mat-icon>
-                    <span> {{gnome.weight | number: '1.0-2'}} Kgs</span>
+                    <span>
+                        <mat-icon inline="true">vertical_align_bottom</mat-icon>
+                         {{gnome.weight | number: '1.0-2'}} Kgs
+
+                    </span>
                     <mat-divider vertical="true"></mat-divider>
-                    <mat-icon>face</mat-icon>
-                    <span> {{gnome.hair_color}} hair</span>
+                    <span>
+                        <mat-icon inline="true">face</mat-icon>
+                         {{gnome.hair_color}} hair
+                    </span>
                 </mat-card-subtitle>
             </mat-card-header>
             <mat-card-content>
@@ -26,7 +38,7 @@
                 </mat-chip-list>
             </mat-card-content>
             <mat-card-footer>
-                <mat-accordion *ngIf="gnome.friends.length > 0">
+                <mat-accordion *ngIf="gnome.friends.length">
                     <mat-expansion-panel displayMode="flat">
                         <mat-expansion-panel-header>
                             <mat-panel-title>Friends</mat-panel-title>
@@ -48,3 +60,4 @@
                [pageSizeOptions]="pageSizeOptions"
                (page)="pageEvent = $event; getGnomes()">
 </mat-paginator>
+<router-outlet></router-outlet>
