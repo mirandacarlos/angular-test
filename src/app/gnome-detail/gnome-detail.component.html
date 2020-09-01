@@ -1,46 +1,50 @@
-<button mat-button (click)="goBack()">Back</button>
-<mat-grid-list cols="1">
-    <mat-grid-tile *ngIf="gnome">
-        <mat-card>
-            <mat-card-header>
-                <img mat-card-avatar src="{{gnome.thumbnail}}" alt="{{gnome.id}}" />
-                <mat-card-title>{{gnome.name}}</mat-card-title>
-                <mat-card-subtitle>
-                    <mat-icon>calendar_today</mat-icon>
-                    <span> {{gnome.age}} years</span>
-                    <mat-divider vertical="true"></mat-divider>
-                    <mat-icon>vertical_align_top</mat-icon>
-                    <span> {{gnome.height | number: '1.0-2'}} cms</span>
-                    <mat-divider vertical="true"></mat-divider>
-                    <mat-icon>vertical_align_bottom</mat-icon>
-                    <span> {{gnome.weight | number: '1.0-2'}} Kgs</span>
-                    <mat-divider vertical="true"></mat-divider>
-                    <mat-icon>face</mat-icon>
-                    <span> {{gnome.hair_color}} hair</span>
-                </mat-card-subtitle>
-            </mat-card-header>
-            <mat-card-content>
-                <mat-chip-list *ngIf="gnome.professions">
-                    <mat-chip *ngFor="let profession of gnome.professions.sort()">
-                        {{profession}}
-                    </mat-chip>
-                </mat-chip-list>
-            </mat-card-content>
-            <mat-card-footer>
-                <mat-accordion *ngIf="gnome.friends.length > 0">
-                    <mat-expansion-panel displayMode="flat">
-                        <mat-expansion-panel-header>
-                            <mat-panel-title>Friends</mat-panel-title>
-                            <mat-panel-description>
-                                {{gnome.friends.length}}
-                            </mat-panel-description>
-                        </mat-expansion-panel-header>
-                        <mat-list>
-                            <mat-list-item *ngFor="let friend of gnome.friends.sort()">{{friend}}</mat-list-item>
-                        </mat-list>
-                    </mat-expansion-panel>
-                </mat-accordion>
-            </mat-card-footer>
-        </mat-card>
-    </mat-grid-tile>
-</mat-grid-list>    
+<div *ngIf="gnome">
+    <h1 mat-dialog-title>{{gnome.name}}</h1>
+
+    <mat-dialog-content>
+        <div fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="10px">
+            <div fxFlex>
+                <img src="{{gnome.thumbnail}}" alt="{{gnome.id}}" style="width: 100%;">
+                <div fxLayout="column" fxLayout.sm="row">
+                    <span>
+                        <mat-icon inline="true">calendar_today</mat-icon> 
+                        {{gnome.age}} years
+                    </span>
+                    <mat-divider vertical="true" fxShow.sm></mat-divider>
+                    <span>
+                        <mat-icon inline="true">vertical_align_top</mat-icon>
+                        {{gnome.height | number: '1.0-2'}} cms
+                    </span>
+                    <mat-divider vertical="true" fxShow.sm></mat-divider>
+                    <span>
+                        <mat-icon inline="true">vertical_align_bottom</mat-icon>
+                        {{gnome.weight | number: '1.0-2'}} Kgs
+                    </span>
+                    <mat-divider vertical="true" fxShow.sm></mat-divider>
+                    <span>
+                        <mat-icon inline="true">face</mat-icon>
+                        {{gnome.hair_color}} hair
+                    </span>    
+                </div>
+            </div>
+
+            <div fxFlex *ngIf="gnome.professions.length">
+                <mat-list>
+                    <h2><mat-icon inline="true">construction</mat-icon> Professions</h2>
+                    <mat-list-item *ngFor="let profession of gnome.professions.sort()">{{profession}}</mat-list-item>
+                </mat-list>
+            </div>
+
+            <div fxFlex *ngIf="gnome.friends.length">
+                <mat-list>
+                    <h2><mat-icon inline="true">group</mat-icon> Friends</h2>
+                    <mat-list-item *ngFor="let friend of gnome.friends.sort()">{{friend}}</mat-list-item>
+                </mat-list>
+            </div>
+        </div>
+    </mat-dialog-content>
+
+    <mat-dialog-actions align="end">
+        <button mat-button mat-dialog-close>Close</button>
+    </mat-dialog-actions>
+</div>

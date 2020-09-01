@@ -4,23 +4,27 @@ import { HttpClientModule } from "@angular/common/http";
 import { MatCardModule } from "@angular/material/card";
 import { MatDividerModule } from "@angular/material/divider";
 import { MatChipsModule } from '@angular/material/chips';
-import { MatGridListModule } from '@angular/material/grid-list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from "@angular/material/list";
 import { MatExpansionModule } from "@angular/material/expansion";
 import { MatPaginatorModule } from "@angular/material/paginator";
+import { MatDialogModule } from "@angular/material/dialog";
+import { MatButtonModule } from "@angular/material/button";
+import { FlexLayoutModule } from "@angular/flex-layout";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GnomesGridComponent } from './gnomes-grid/gnomes-grid.component';
 import { GnomeDetailComponent } from './gnome-detail/gnome-detail.component';
+import { DialogEntryComponent } from './dialog-entry/dialog-entry.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     GnomesGridComponent,
-    GnomeDetailComponent
+    GnomeDetailComponent,
+    DialogEntryComponent
   ],
   imports: [
     BrowserModule,
@@ -30,11 +34,13 @@ import { GnomeDetailComponent } from './gnome-detail/gnome-detail.component';
     MatCardModule,
     MatDividerModule,
     MatChipsModule,
-    MatGridListModule,
     MatIconModule,
     MatListModule,
     MatExpansionModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatDialogModule,
+    MatButtonModule,
+    FlexLayoutModule
   ],
   providers: [],
   bootstrap: [AppComponent]

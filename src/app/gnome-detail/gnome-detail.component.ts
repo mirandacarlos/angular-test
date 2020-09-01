@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Location } from '@angular/common';
+import { Component, OnInit, Inject } from '@angular/core';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 import { Gnome } from "../gnome";
 import { GnomeService } from "../gnome.service";
@@ -15,23 +14,17 @@ export class GnomeDetailComponent implements OnInit {
   gnome: Gnome;
   
   constructor(
-    private route: ActivatedRoute, 
-    private location: Location,
-    private gnomeService: GnomeService
+    private gnomeService: GnomeService,
+    @Inject(MAT_DIALOG_DATA) public data: any
   ) { }
   
   ngOnInit(): void {
-    this.getGnome();
+    this.getGnome(this.data.id);
   }
 
-  getGnome(): void {
-    const id = +this.route.snapshot.paramMap.get('id');
+  getGnome(id: number): void {
     this.gnomeService.getGnome(id)
       .subscribe((gnome: Gnome) => this.gnome = gnome);
-  }
-
-  goBack(): void {
-    this.location.back();
   }
   
 }

@@ -1,13 +1,14 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { GnomesGridComponent } from "./gnomes-grid/gnomes-grid.component";
-import { GnomeDetailComponent } from "./gnome-detail/gnome-detail.component";
+import { DialogEntryComponent } from './dialog-entry/dialog-entry.component';
 
 
 const routes: Routes = [
   { path: '', redirectTo: '/gnomes', pathMatch: 'full' },
-  { path: 'gnomes', component: GnomesGridComponent },
-  { path: 'detail/:id', component: GnomeDetailComponent }
+  { path: 'gnomes', component: GnomesGridComponent, children:[{
+    path: 'detail/:id', component: DialogEntryComponent
+  }] },
 ];
 
 @NgModule({
