@@ -6,6 +6,6 @@ export interface Gnome {
     age: number;
     hair_color: string;
     thumbnail: string;
-    friends: string;
-    professions: string;
+    friends: string[];
+    professions: string[];
 }
